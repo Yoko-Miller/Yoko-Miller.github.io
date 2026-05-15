@@ -3,174 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NARRATIVE | OBSCURUM</title>
+    <title>NARRATIVE ARCHITECT | PORTFOLIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { width: 100%; height: 100%; background: #0a0a0a; color: #c0c0c0; font-family: 'Source Sans Pro', sans-serif; line-height: 1.8; font-weight: 300; letter-spacing: 0.3px; scroll-behavior: smooth; }
+        
+        /* Гибкая структура страницы */
+        html, body { width: 100%; min-height: 100vh; background: #0a0a0a; color: #c0c0c0; font-family: 'Source Sans Pro', sans-serif; line-height: 1.8; font-weight: 300; scroll-behavior: smooth; }
+        body { display: flex; flex-direction: column; }
+        
         body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%); pointer-events: none; z-index: -1; }
-        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid #1a1a1a; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; backdrop-filter: blur(10px); }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 4px; color: #b0b0b0; text-transform: uppercase; }
-        nav ul { display: flex; list-style: none; gap: 3rem; }
-        nav a { text-decoration: none; color: #808080; font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.4s ease; position: relative; font-weight: 300; }
+        
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid #1a1a1a; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 4px; color: #ffffff; text-transform: uppercase; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { text-decoration: none; color: #808080; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
-        main { padding-top: 120px; }
-        section { padding: 80px 4rem; max-width: 1400px; margin: 0 auto; position: relative; }
-        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: calc(100vh - 120px); }
-        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 2rem; letter-spacing: 2px; color: #ffffff; }
-        .hero-text .subtitle { font-size: 1.1rem; color: #808080; margin-bottom: 2rem; font-weight: 300; letter-spacing: 1px; }
-        .hero-text p { color: #a0a0a0; margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.9; }
-        .hero-image { position: relative; height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .silhouette { position: absolute; width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid #2a2a2a; display: flex; align-items: flex-end; justify-content: center; }
-        .silhouette::before { content: ''; width: 200px; height: 350px; background: linear-gradient(90deg, transparent 0%, #050505 50%, transparent 100%); position: relative; clip-path: polygon(20% 0%, 30% 5%, 35% 0%, 40% 8%, 50% 0%, 60% 10%, 70% 0%, 75% 8%, 80% 0%, 85% 5%, 90% 0%, 100% 15%, 98% 30%, 95% 45%, 93% 60%, 92% 75%, 90% 90%, 88% 100%, 50% 100%, 52% 85%, 50% 65%, 48% 85%, 50% 100%, 12% 100%, 10% 90%, 8% 75%, 7% 60%, 5% 45%, 2% 30%, 0% 15%); opacity: 0.8; }
-        .about { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        .about-text h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: 1px; color: #ffffff; }
-        .about-text h3 { font-size: 1.1rem; color: #808080; margin-top: 2rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase; }
-        .about-text p { color: #909090; margin-bottom: 1.5rem; line-height: 1.9; }
-        .skills-list { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
-        .skill-item { border-left: 2px solid #2a2a2a; padding-left: 1.5rem; }
-        .skill-item .label { font-size: 0.85rem; color: #606060; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
-        .skill-item .value { color: #a0a0a0; font-size: 0.95rem; }
-        .about-image { position: relative; height: 500px; }
-        .silhouette-profile { position: absolute; width: 100%; height: 100%; border: 1px solid #2a2a2a; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); display: flex; align-items: center; justify-content: center; }
-        .silhouette-profile::after { content: ''; width: 150px; height: 250px; background: linear-gradient(90deg, transparent 0%, #050505 50%, transparent 100%); clip-path: polygon(30% 0%, 35% 3%, 40% 0%, 45% 2%, 50% 0%, 55% 2%, 60% 0%, 65% 3%, 70% 0%, 85% 5%, 95% 20%, 98% 35%, 99% 50%, 98% 65%, 95% 80%, 85% 92%, 70% 98%, 30% 98%, 15% 92%, 5% 80%, 2% 65%, 1% 50%, 2% 35%, 5% 20%, 15% 5%); opacity: 0.9; }
-        .projects { background: linear-gradient(180deg, rgba(20, 20, 20, 0.5) 0%, rgba(10, 10, 10, 0.5) 100%); border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
-        .projects h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 4rem; letter-spacing: 1px; color: #ffffff; text-align: center; }
-        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
-        .project { border: 1px solid #2a2a2a; padding: 2.5rem; transition: all 0.4s ease; background: linear-gradient(135deg, rgba(30, 30, 30, 0.3) 0%, rgba(15, 15, 15, 0.3) 100%); position: relative; cursor: pointer; overflow: hidden; }
-        .project:hover { border-color: #5a5a5a; background: linear-gradient(135deg, rgba(40, 40, 40, 0.5) 0%, rgba(20, 20, 20, 0.5) 100%); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); transform: translateY(-4px); }
-        .project-type { font-size: 0.75rem; color: #606060; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; }
-        .project h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #ffffff; margin-bottom: 1rem; font-weight: 700; letter-spacing: 1px; }
-        .project p { color: #909090; font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.5rem; }
-        .project-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid #2a2a2a; }
-        .project-year { font-size: 0.8rem; color: #606060; text-transform: uppercase; }
-        .project-link { font-size: 0.8rem; color: #a0a0a0; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; }
-        .btn { display: inline-block; padding: 12px 40px; border: 1px solid #5a5a5a; background: transparent; color: #a0a0a0; font-family: 'Source Sans Pro', sans-serif; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.4s ease; font-weight: 600; text-decoration: none; }
-        .btn:hover { border-color: #ffffff; color: #ffffff; background: rgba(255, 255, 255, 0.05); }
-        footer { padding: 4rem; border-top: 1px solid #1a1a1a; text-align: center; color: #606060; font-size: 0.85rem; letter-spacing: 0.5px; }
-        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.95); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        
+        main { padding-top: 120px; flex: 1; }
+        section { padding: 40px 4rem; max-width: 1200px; margin: 0 auto; }
+        
+        /* Уменьшили отступ снизу, чтобы поднять проекты выше */
+        .hero { margin-bottom: 1.5rem; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.8rem; color: #ffffff; line-height: 1.2; margin-bottom: 1.5rem; }
+        .hero .subtitle { color: #808080; font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 400; letter-spacing: 0.5px; }
+        .hero p { max-width: 700px; color: #a0a0a0; font-size: 1.05rem; }
+        
+        /* Убрали верхний отступ у секции с проектами, приподнимая окошки */
+        #work { padding-top: 0px; }
+        
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 1rem; }
+        .project { border: 1px solid #1c1c1c; padding: 3rem; background: linear-gradient(135deg, #0f0f0f 0%, #0a0a0a 100%); cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project:hover { border-color: #444; transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.7); }
+        .project-type { font-size: 0.75rem; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+        .project h3 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #ffffff; margin-bottom: 1rem; font-weight: 400; }
+        .project p { color: #808080; font-size: 0.95rem; }
+        
+        /* Модальная система */
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5, 5, 5, 0.98); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
         .modal.active { display: flex; }
-        .modal-content { background: #0a0a0a; border: 1px solid #2a2a2a; padding: 3rem; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; }
-        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #606060; transition: color 0.3s ease; border: none; background: transparent; font-weight: 300; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
-        .modal-close:hover { color: #ffffff; }
-        .modal-content h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-top: 1rem; margin-bottom: 1rem; color: #ffffff; letter-spacing: 1px; }
-        .modal-content h3 { font-size: 1rem; color: #808080; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2rem; margin-bottom: 1rem; font-weight: 600; border-bottom: 1px solid #1a1a1a; padding-bottom: 0.5rem; }
-        .modal-content p { color: #909090; line-height: 1.9; margin-bottom: 1rem; font-size: 0.95rem; }
-        .media-full { width: 100%; border: 1px solid #2a2a2a; margin-bottom: 1.5rem; }
-        .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-        .media-grid img { width: 100%; border: 1px solid #2a2a2a; object-fit: cover; height: 100%; }
-        @media (max-width: 1024px) { .hero, .about, .projects-grid { grid-template-columns: 1fr; } .hero-image, .about-image { height: 400px; } }
-        @media (max-width: 640px) { .media-grid { grid-template-columns: 1fr; } }
+        .modal-content { background: #0a0a0a; border: 1px solid #222; padding: 3.5rem; max-width: 950px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 0 60px rgba(0,0,0,0.8); }
+        .modal-close { position: absolute; top: 25px; right: 25px; font-size: 2.5rem; color: #444; cursor: pointer; background: none; border: none; transition: color 0.2s; }
+        .modal-close:hover { color: #fff; }
+        
+        .modal-content h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #ffffff; margin-bottom: 0.5rem; }
+        .modal-content .meta { color: #555; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; display: block; }
+        .modal-content h3 { font-family: 'Playfair Display', serif; color: #ffffff; font-size: 1.3rem; margin: 2.5rem 0 1rem; border-bottom: 1px solid #1f1f1f; padding-bottom: 0.5rem; letter-spacing: 1px; }
+        .modal-content p { color: #959595; margin-bottom: 1.2rem; font-size: 0.95rem; line-height: 1.8; }
+        
+        /* Медиа-сетки */
+        .media-full { width: 100%; border: 1px solid #1c1c1c; margin: 1.5rem 0; background: #000; }
+        .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1.5rem 0; }
+        .media-grid img { width: 100%; height: auto; border: 1px solid #1c1c1c; display: block; background: #050505; object-fit: cover; }
+        
+        .btn { display: inline-block; padding: 12px 35px; border: 1px solid #333; color: #ffffff; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; margin-top: 1.5rem; transition: background 0.3s, color 0.3s; }
+        .btn:hover { background: #ffffff; color: #000000; border-color: #ffffff; }
+        
+        /* Красивый темно-серый футер строго внизу экрана */
+        footer { 
+            padding: 20px 0; 
+            margin-top: 3rem; 
+            text-align: center; 
+            background: #0f0f0f; /* Оставили четкий темно-серый цвет */
+            border-top: 1px solid #1a1a1a;
+            color: #444; 
+            font-size: 0.8rem; 
+            letter-spacing: 1px; 
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+        }
+        
+        @media (max-width: 1024px) { .projects-grid, .media-grid { grid-template-columns: 1fr; } section { padding: 40px 2rem; } }
     </style>
 </head>
 <body>
+
     <nav>
-        <div class="logo">NARRATIVE</div>
+        <div class="logo">YOKO</div>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
+            <li><a href="#work">Projects</a></li>
         </ul>
     </nav>
 
     <main>
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Architect of<br>Silent Narratives</h1>
-                <p class="subtitle">Narrative Designer & Game Design Philosopher</p>
-                <p>I craft stories that breathe through interactive worlds. Where language becomes mechanics, and every choice echoes in the darkness.</p>
-                <p>A scholar of German texts meets the designer of game worlds—finding meaning in the spaces between pixels.</p>
-            </div>
-            <div class="hero-image"><div class="silhouette"></div></div>
+        <section class="hero" id="about">
+            <h1>Narrative Architect</h1>
+            <p class="subtitle">The Intersection of Philology, Systems Programming, and Level Design</p>
+            <p>I design gameplay spaces where environmental structures, mechanics, and code act as a non-verbal narrative language. Form follows text; level structure emerges from core character intent.</p>
         </section>
 
-        <section class="about" id="about">
-            <div class="about-text">
-                <h2>Who I Am</h2>
-                <p>I began in the depths of philology—analyzing the hidden structures of language, the weight of words unsaid. Now I apply that precision to interactive narratives.</p>
-                <p>My work explores: How do mechanics tell stories? What can silence convey? When does a level become literature?</p>
-                <h3>Disciplines</h3>
-                <div class="skills-list">
-                    <div class="skill-item"><div class="label">Primary</div><div class="value">Narrative Design</div></div>
-                    <div class="skill-item"><div class="label">Systems</div><div class="value">UE5, Blueprints, GDD</div></div>
-                    <div class="skill-item"><div class="label">Approach</div><div class="value">Environmental Storytelling</div></div>
-                    <div class="skill-item"><div class="label">Philosophy</div><div class="value">Form follows Narrative</div></div>
-                </div>
-            </div>
-            <div class="about-image"><div class="silhouette-profile"></div></div>
-        </section>
-
-        <section class="projects" id="work">
-            <h2>Archived Projects</h2>
+        <section id="work">
             <div class="projects-grid">
                 <div class="project" onclick="openModal('project1')">
-                    <div class="project-type">UE5 Prototype</div>
-                    <h3>Leon: The Professional</h3>
-                    <p>Narrative Prototype exploring tension and environmental storytelling through level geometry, color-coding, and custom logic.</p>
-                    <div class="project-meta"><span class="project-year">2024</span><span class="project-link">→ View Case Study</span></div>
+                    <div class="project-type">UE5 Prototype / Greybox</div>
+                    <h3>Leon: The Game</h3>
+                    <p>A multi-system stealth adaptation exploring mechanical tension, spatial pacing, and adaptive companion logic.</p>
                 </div>
-
                 <div class="project" onclick="openModal('project2')">
-                    <div class="project-type">2D Platformer</div>
+                    <div class="project-type">Python / Pygame Framework</div>
                     <h3>Unspoken Dialogue</h3>
-                    <p>Testing how difficulty and mechanics act as non-verbal narrative reflections of internal struggle.</p>
-                    <div class="project-meta"><span class="project-year">2024</span><span class="project-link">→ View Details</span></div>
+                    <p>A narrative-driven 2D platformer analyzing mechanical friction and movement pacing as metaphors for psychological stress.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 Narrative Design | Obscurum Series</p>
+        <p>© 2026 YOKO MILLER INDUSTRIES. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <div id="project1Modal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('project1')">×</button>
-            <h2>Leon: The Professional</h2>
-            <p style="color: #808080; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.5rem; margin-bottom: 2rem;">Narrative Prototype | Greybox | Level Design</p>
-
-            <h3>Visual Vocabulary & Pacing</h3>
-            <p>Transitioning the player from a claustrophobic, shadow-heavy corridor into an open rooftop arena. Color-coded blocks act as a non-verbal language: Red signifies immediate threat zones, while Green dictates safe pathing.</p>
+            <h2>Leon: The Game</h2>
+            <span class="meta">Unreal Engine 5 • Technical Narrative Design • Greybox Prototype</span>
             
+            <p>Based on the formal structure of the classic text, this prototype focuses on the dynamic interaction between a professional hitman and his apprentice. The level pacing transitions deliberately from tight, claustrophobic corridors into open, high-exposure combat topologies.</p>
+            
+            <h3>Core Spatial Pacing & Mechanics</h3>
+            <p>Demonstrating player movement translation through the greybox layout. This captures the primary mechanical flow, including climbing transitions and cover interactions.</p>
             <video autoplay loop muted playsinline class="media-full">
                 <source src="assets/Leon_Greybox.mp4" type="video/mp4">
             </video>
 
             <h3>Level Topology & Signposting</h3>
-            <p>A macro-view of the architectural structure. This layout allows for testing the distribution of sightlines and cover objects, ensuring the player is guided implicitly through the environment.</p>
-
+            <p>Macro-views of architectural layout. The placement of high-contrast red blocks defines immediate line-of-sight danger vectors, establishing an intuitive visual vocabulary that guides pathing without intrusive UI markers.</p>
             <div class="media-grid">
-                <img src="assets/t1.jpg" alt="Topology 1">
-                <img src="assets/t2.jpg" alt="Topology 2">
-                <img src="assets/t3.jpg" alt="Topology 3" style="grid-column: span 2;">
+                <img src="assets/t1.png" alt="Topology Concept 1">
+                <img src="assets/t2.png" alt="Topology Concept 2">
+                <img src="assets/t3.png" style="grid-column: span 2;" alt="Full Macro Layout">
             </div>
 
-            <h3>Atmosphere & Lighting</h3>
-            <p>Exploring the Neo-Noir aesthetic of the 90s. Using sharp shadows and tight geometry to induce tension before the combat encounter.</p>
+            <h3>Atmosphere, Lighting & Aesthetic Iteration</h3>
+            <p>Testing Neo-Noir contrast principles. The design implements "Tungsten Warmth" (yellow/orange tones) to mark internal safe hubs ("The Womb") and shifts to "Fluorescent Cold" (sterile blues and whites) for hostile spaces.</p>
+            <div class="media-grid">
+                <img src="assets/1.png" alt="Interior Shadow Study">
+                <img src="assets/2.png" alt="Vertical Transit Lighting">
+                <img src="assets/3.png" alt="Sightline Exposure Corridor">
+                <img src="assets/4.png" alt="Volumetric Chiaroscuro Effect">
+            </div>
             
-            <div class="media-grid">
-                <img src="assets/1.jpg" alt="Corridor lighting">
-                <img src="assets/2.jpg" alt="Stairway exit">
-                <img src="assets/3.jpg" alt="Deep shadows">
-                <img src="assets/4.jpg" alt="Environmental storytelling">
-            </div>
-
+            <p>Iterative lighting validation: evaluating geometry readability and clear navigation paths under standard daylight conditions prior to baking final dark aesthetics.</p>
             <video autoplay loop muted playsinline class="media-full">
                 <source src="assets/Leon_Day.mp4" type="video/mp4">
             </video>
 
-            <h3>Under the Hood: UE5 Blueprints</h3>
-            <p>Technical implementation is key to delivering the narrative feel. I built custom logic for aiming transitions, fluid camera control, and movement inputs.</p>
-            
-            <img src="assets/bp1.jpg" alt="Aiming Logic Blueprint" class="media-full">
+            <h3>Technical Architecture (UE5 Blueprints)</h3>
+            <p>Custom engine implementations behind the prototype flow. Includes aiming field-of-view camera lerping, responsive mouse/gamepad camera rotation modifiers, and jump velocity curves modified by character inventory loadout constraints.</p>
+            <img src="assets/bp1.png" class="media-full" alt="Aiming FOV Interpolation Matrix">
             <div class="media-grid">
-                <img src="assets/bp2.jpg" alt="Camera Input Blueprint">
-                <img src="assets/bp3.jpg" alt="Jump Input Blueprint">
+                <img src="assets/bp2.png" alt="Orbiting Camera Input Logic">
+                <img src="assets/bp3.png" alt="Enhanced Input Character Jump Curve">
             </div>
 
-            <h3>Game Design Document</h3>
-            <p>Details the core narrative loop, character arcs, and systems.</p>
-            <a href="assets/LEON_GDD.pdf" target="_blank" class="btn" style="margin-top: 1rem;">Read GDD Excerpt (PDF)</a>
+            <h3>Comprehensive Documentation</h3>
+            <p>The complete systemic framework covering the partner-switching system, interactive hub loops (Plant Care, Milk Consumption mechanics), skill-tree branching, and the "Code Violation" automatic failure triggers.</p>
+            <a href="assets/LEON_GDD.pdf" target="_blank" class="btn">Open Full Game Design Document (PDF)</a>
         </div>
     </div>
 
@@ -178,15 +168,28 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('project2')">×</button>
             <h2>Unspoken Dialogue</h2>
-            <p style="color: #808080; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.5rem;">2D Platformer Prototype | Level Design</p>
-            <h3>The Concept</h3>
-            <p>Exploring difficulty as a narrative tool. Each jump and obstacle serves as a word in the dialogue between the player and the world.</p>
+            <span class="meta">Python 3 • Pygame Framework • Systemic Mechanics</span>
+            
+            <p>An exploration of mechanical friction where game logic explicitly mirrors narrative subtext. Rather than utilizing pre-built engine packages, all core mechanics—including customized gravity vectors, precise acceleration tables, and state-machine animations—were developed entirely from scratch in pure Python.</p>
+            
+            <h3>Gameplay Structure & Environmental Rhythm</h3>
+            <p>Visual narrative pacing within the platformer environment, using responsive retro-inspired constraints to dictate player tension and mechanical urgency.</p>
+            <div class="media-grid">
+                <img src="assets/p2.png" alt="Jump Trajectory Testing">
+                <img src="assets/p3.png" alt="Hazard Placement & Collision Bounds">
+                <img src="assets/p4.png" style="grid-column: span 2;" alt="State Animation Verification">
+            </div>
+
+            <h3>Systemic Architecture (Python Source Code)</h3>
+            <p>Excerpts from the primary execution script. Focus points include the bespoke integration of vertical step velocities, delta-time execution safeguards fixed at 144Hz, frame-by-frame asset blitting arrays, and manual keyboard hardware state polling via Pygame vectors.</p>
+            <img src="assets/code1.png" class="media-full" alt="Jump Physics & Delta Time Velocity Calculations">
+            <img src="assets/code2.png" class="media-full" alt="Background Parallax Scroll & Animation Array Handlers">
         </div>
     </div>
 
     <script>
-        function openModal(projectId) { document.getElementById(projectId + 'Modal').classList.add('active'); }
-        function closeModal(projectId) { document.getElementById(projectId + 'Modal').classList.remove('active'); }
+        function openModal(id) { document.getElementById(id + 'Modal').classList.add('active'); }
+        function closeModal(id) { document.getElementById(id + 'Modal').classList.remove('active'); }
         window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.classList.remove('active'); } }
     </script>
 </body>
